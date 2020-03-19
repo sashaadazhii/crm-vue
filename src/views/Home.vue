@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="page-title">
-        <h3>Счет</h3>
+        <h3>{{'Menu_Bill' | localize}}</h3>
 
         <button class="btn waves-effect waves-light btn-small" @click="refresh">
           <i class="material-icons">refresh</i>
@@ -20,11 +20,16 @@
 </template>
 
 <script>
-import HomeBill from "@/components/HomeBill";
-import HomeCurrency from "@/components/HomeCurrency";
+import HomeBill from '@/components/HomeBill'
+import HomeCurrency from '@/components/HomeCurrency'
 
 export default {
-  name: "Home",
+  metaInfo() {
+    return {
+      title: this.$title('Menu_Bill')
+    }
+  },
+  name: 'Home',
 
   data: () => ({
     loading: true,
@@ -32,21 +37,21 @@ export default {
   }),
 
   async mounted() {
-    this.currency = await this.$store.dispatch("fetchCurrency");
+    this.currency = await this.$store.dispatch('fetchCurrency')
     // console.log(this.currency);
-    this.loading = false;
+    this.loading = false
   },
 
   methods: {
     async refresh() {
-      this.loading = true;
-      this.currency = await this.$store.dispatch("fetchCurrency");
-      this.loading = false;
+      this.loading = true
+      this.currency = await this.$store.dispatch('fetchCurrency')
+      this.loading = false
     }
   },
   components: {
     HomeBill,
     HomeCurrency
   }
-};
+}
 </script>

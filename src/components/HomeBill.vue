@@ -2,10 +2,10 @@
   <div class="col s12 m6 l4">
     <div class="card light-blue bill-card">
       <div class="card-content white-text">
-        <span class="card-title">Счет в валюте</span>
+        <span class="card-title">{{ 'Menu_Bill' | localize }}</span>
 
         <p class="currency-line" v-for="cur of currencies" :key="cur">
-          <span>{{getCurrency(cur) | currency(cur)}}</span>
+          <span>{{ getCurrency(cur) | currency(cur) }}</span>
         </p>
       </div>
     </div>
@@ -14,24 +14,24 @@
 
 <script>
 export default {
-  props: ["rates"],
+  props: ['rates'],
 
   data: () => ({
-    currencies: ["UAH", "USD", "EUR"]
+    currencies: ['UAH', 'USD', 'EUR']
   }),
 
   computed: {
     base() {
       return (
-        this.$store.getters.info.bill / (this.rates["UAH"] / this.rates["EUR"])
-      );
+        this.$store.getters.info.bill / (this.rates['UAH'] / this.rates['EUR'])
+      )
     }
   },
 
   methods: {
     getCurrency(currency) {
-      return Math.floor(this.base * this.rates[currency]);
+      return Math.floor(this.base * this.rates[currency])
     }
   }
-};
+}
 </script>
